@@ -5,9 +5,7 @@
  * Here’s a sample stub of FindDuplicates.java:
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class FindDuplicates {
 
@@ -28,16 +26,37 @@ public class FindDuplicates {
         return duplicates;
     }
 
+    public static List<Integer> findModeHashMap(List<Integer> l) {
+        List<Integer> duplicates = new ArrayList<Integer>();
+        Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+        for(int i = 0; i < l.size(); i++) {
+            if (map.containsKey(l.get(i)) && !duplicates.contains(l.get(i))) {
+                duplicates.add(l.get(i));
+            }
+            map.put(l.get(i), 1);
+        }
+        return duplicates;
+    }
+
+
     public static void main(String[] args) {
         // some test strings:
         List<Integer> sample1 = new ArrayList<Integer>(Arrays.asList(3, 7, 5, 6, 7, 4, 8, 5, 7, 66));
         List<Integer> sample2 = new ArrayList<Integer>(Arrays.asList(3, 5, 6, 4, 4, 5, 66, 6, 7, 6));
         List<Integer> sample3 = new ArrayList<Integer>(Arrays.asList(3, 0, 5, 1, 0));
         List<Integer> sample4 = new ArrayList<Integer>(Arrays.asList(3));
-        System.out.println("Sample 1: " + findModeNestedLoops(sample1));
-        System.out.println("Sample 2: " + findModeNestedLoops(sample2));
-        System.out.println("Sample 3: " + findModeNestedLoops(sample3));
-        System.out.println("Sample 4: " + findModeNestedLoops(sample4));
+        System.out.println("Sample 1a: " + findModeNestedLoops(sample1));
+        System.out.println("Sample 1b: " + findModeHashMap(sample1));
+
+        System.out.println("Sample 2a: " + findModeNestedLoops(sample2));
+        System.out.println("Sample 2b: " + findModeHashMap(sample2));
+
+        System.out.println("Sample 3a: " + findModeNestedLoops(sample3));
+        System.out.println("Sample 3b: " + findModeHashMap(sample3));
+
+        System.out.println("Sample 4a: " + findModeNestedLoops(sample4));
+        System.out.println("Sample 4b: " + findModeHashMap(sample4));
     }
 
 }
